@@ -1,0 +1,52 @@
+body {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(238, 252, 255);
+}
+
+.calculadora {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    background: white;
+    width: 260px;
+    height: 330px;
+
+    box-shadow: 0 0px 15px gray;
+
+    border-radius: 20px;
+}
+
+.teclado {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 5px;
+}
+
+button {
+    cursor: pointer;
+
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+
+    border-radius: 12px;
+    border: none;
+}
+
+input {
+    height: 40px;
+    width: 210px;
+    background: rgba(128, 128, 128, 0.123);
+
+    border: none;
+    border-radius: 12px;
+    
+}
