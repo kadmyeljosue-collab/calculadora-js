@@ -1,3 +1,7 @@
+const listaHistorico = document.getElementById("listaHistorico");
+
+const modoNoturno = document.querySelector(".nocturneMode");
+
 const teclado = document.getElementById("teclado");
 
 const visor = document.getElementById("visor");
@@ -8,7 +12,49 @@ let primeiroNumero = "";
 
 let operador = "";
 
-//eventClick
+let historico = JSON.parse(localStorage.getItem("historico")) || [];
+//modo noturno
+modoNoturno.addEventListener("click", function () {
+  document.querySelector(".calculadora").classList.toggle("dark");
+
+  if (document.querySelector(".calculadora").classList.contains("dark")) {
+    modoNoturno.textContent = "⭐";
+  } else {
+    modoNoturno.textContent = "🌙";
+  }
+});
+
+//histórico de cálculos
+function adicionarHistorico(conta) {
+  historico.push(conta);
+
+  localStorage.setItem("historico", JSON.stringify(historico));
+
+  listaHistorico.innerHTML = "";
+
+  historico.forEach(function (item) {
+    const elemento = document.createElement("p");
+
+    elemento.textContent = item;
+
+    listaHistorico.appendChild(elemento);
+  });
+}
+
+//mostra os cálculos mesmo após o reset da página
+function mostrarHistorico() {
+  listaHistorico.innerHTML = "";
+
+  historico.forEach(function (item) {
+    const elemento = document.createElement("p");
+
+    elemento.textContent = item;
+
+    listaHistorico.appendChild(elemento);
+  });
+}
+
+//funcionalidade da calculadora
 teclado.addEventListener("click", function (evento) {
   const valor = evento.target.textContent;
 
@@ -48,6 +94,8 @@ teclado.addEventListener("click", function (evento) {
       console.log(resultado);
       visor.value = resultado;
 
+      adicionarHistorico(`${primeiroNumero} + ${segundoNumero} = ${resultado}`);
+
       numero = "";
 
       console.log("SOMA");
@@ -59,6 +107,8 @@ teclado.addEventListener("click", function (evento) {
 
       console.log("MULTIPLICAÇÂO");
 
+      adicionarHistorico(`${primeiroNumero} * ${segundoNumero} = ${resultado}`);
+
       numero = "";
     } else if (operador === "-") {
       const resultado = primeiroNumero - segundoNumero;
@@ -67,6 +117,8 @@ teclado.addEventListener("click", function (evento) {
       visor.value = resultado;
 
       console.log("SUBTRAÇÂO");
+
+      adicionarHistorico(`${primeiroNumero} - ${segundoNumero} = ${resultado}`);
 
       numero = "";
     } else if (operador === "/") {
@@ -77,7 +129,11 @@ teclado.addEventListener("click", function (evento) {
 
       console.log("DIVISÂO");
 
+      adicionarHistorico(`${primeiroNumero} / ${segundoNumero} = ${resultado}`);
+
       numero = "";
     }
   }
 });
+
+mostrarHistorico();

@@ -1,52 +1,121 @@
 body {
-    min-height: 100vh;
+  min-height: 100vh;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background-color: rgb(238, 252, 255);
+  background-color: rgb(238, 252, 255);
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .calculadora {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 
-    background: white;
-    width: 260px;
-    height: 330px;
+  background: white;
+  width: 260px;
+  height: 330px;
 
-    box-shadow: 0 0px 15px gray;
+  box-shadow: 0 0px 15px gray;
 
-    border-radius: 20px;
+  border-radius: 20px;
+
+  transition: 0.3s ease;
 }
 
 .teclado {
-    display: grid;
-    gap: 5px;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 5px;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 5px;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 
-    width: 35px;
-    height: 35px;
-    font-size: 20px;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
 
-    border-radius: 12px;
-    border: none;
+  border-radius: 12px;
+  border: none;
 }
 
 input {
-    height: 40px;
-    width: 210px;
-    background: rgba(128, 128, 128, 0.123);
+  height: 40px;
+  width: 210px;
+  background: rgba(128, 128, 128, 0.123);
 
-    border: none;
-    border-radius: 12px;
-    
+  border: none;
+  border-radius: 12px;
+}
+
+.nocturneMode {
+  position: absolute;
+
+  top: 322px;
+  left: 1048px;
+
+  background: none;
+
+  cursor: pointer;
+}
+
+.calculadora.dark {
+  background: #222;
+}
+
+.calculadora.dark input {
+  background: #444;
+  color: white;
+
+  transition: 0.3s ease;
+}
+
+.calculadora.dark h1 {
+  color: white;
+
+  transition: 0.3s ease;
+}
+
+.calculadora.dark button {
+  color: black;
+
+  transition: 0.3s ease;
+}
+
+body:has(.calculadora.dark) {
+  background-color: #111;
+
+  transition: 0.3s ease-in-out;
+}
+
+.historico {
+  position: absolute;
+
+  margin-top: 20px;
+  width: 250px;
+
+  background: white;
+  padding: 10px;
+
+  left: 50vh;
+
+  border-radius: 12px;
+
+  box-shadow: 0 0px 15px gray;
+}
+
+.historico h2 {
+  margin-bottom: 10px;
+}
+
+#listaHistorico {
+  max-height: 150px;
+
+  overflow-y: auto;
 }
